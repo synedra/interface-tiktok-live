@@ -143,7 +143,7 @@ This will take a few minutes.
     <img src="tutorial/images/deploy-4.png" />
     </details>
 
-### 3. Clone your GitHub repository
+### 3. Switch to your new Github Repository
 
   * Click on the `GitHub` in `Deploys from GitHub` to get back to your new repository.  Scroll to where you were in the README.
     <details>
@@ -201,9 +201,9 @@ This is what the token page looks like.
 
 Notice the clipboard icon at the end of each value.
 
-- `Client ID:` We will use it as a username to contact Cassandra
+- `Client ID:` We will not be using this value
 
-- `Client Secret:` We will use it as a password to contact Cassandra
+- `Client Secret:` We will not be using this value either
 
 - `Token:` We will use it as a api Key to interact with APIS
 
