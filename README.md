@@ -87,23 +87,8 @@ That's it, you are done! Expect an email next week!
 
 # Part 1 - Run and Deploy
 
-### 1. Login or Register to Astra DB and create database
 
-Click the button to login or register with Datastax
-
-<a href="http://dtsx.io/tik-tok-clone"><img src="tutorial/images/create_astra_db.png?raw=true" /></a>
-- <details><summary>Show me!</summary>
-    <img src="https://github.com/datastaxdevs/workshop-spring-stargate/raw/main/images/tutorials/astra-create-db.gif?raw=true" />
-</details>
-
-**Use the following values when creating the database**
-|Field| Value|
-|---|---|
-|**database name**| `tiktok_workshop_db` |
-|**keypace**| `tiktok_keyspace` |
-|**Cloud Provider**| *Use the one you like, click a cloud provider logo,  pick an Area in the list and finally pick a region.* |
-
-### 2. Deploy to Netlify
+### 1. Deploy to Netlify
 - <details><summary> What does the netlify deploy button do?</summary>The Netlify deploy button will:<ul>
     <li>Create a new repository for you on Github</li>
     <li>Create a site on Netlify</li>
@@ -112,7 +97,7 @@ Click the button to login or register with Datastax
 
 - Click the button to deploy
 
-  [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/datastaxdevs/workshop-astra-tik-tok)
+  [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/synedra/interface-tiktok)
  * <details><summary>Show me!</summary>
     <img src="tutorial/images/deploy-to-netlify.gif?raw=true" />
     </details>
@@ -142,10 +127,27 @@ This will take a few minutes.
     <summary>Show me! </summary>
     <img src="tutorial/images/deploy-4.png" />
     </details>
+    
+### 2. Login or Register to Astra DB and create database
+
+Click the button to login or register with Datastax
+
+<a href="http://dtsx.io/tik-tok-clone"><img src="tutorial/images/create_astra_db.png?raw=true" /></a>
+- <details><summary>Show me!</summary>
+    <img src="https://github.com/datastaxdevs/workshop-spring-stargate/raw/main/images/tutorials/astra-create-db.gif?raw=true" />
+</details>
+
+**Use the following values when creating the database**
+|Field| Value|
+|---|---|
+|**database name**| `tiktok_workshop_db` |
+|**keypace**| `tiktok_keyspace` |
+|**Cloud Provider**| *Use the one you like, click a cloud provider logo,  pick an Area in the list and finally pick a region.* |
+
 
 ### 3. Switch to your new Github Repository
 
-  * Click on the `GitHub` in `Deploys from GitHub` to get back to your new repository.  Scroll to where you were in the README.
+  * Back in the Netlify tab, click on the `GitHub` in `Deploys from GitHub` to get back to your new repository.  Scroll to where you were in the README.
     <details>
     <summary>Show me! </summary>
     <img src="tutorial/images/deploy-5.png" />
@@ -178,38 +180,7 @@ If you are still using the `datastaxdevs` repo please ensure to follow the previ
     <img src="tutorial/images/netlify-install-cli.png?raw=true" />
     </details>
 
-### 6. Generate application token to securely connect to the database
-
-Following the [Documentation](https://docs.datastax.com/en/astra/docs/manage-application-tokens.html) create a token with `Database Admnistrator` roles.
-
-- Go the `Organization Settings`
-
-- Go to `Token Management`
-
-- Pick the role `Database Admnistrator` on the select box
-
-- Click Generate token
-
- * <details><summary>Show me!</summary>
-    <img src="tutorial/images/astra-create-token.gif?raw=true" />
-    </details>
-
-This is what the token page looks like. 
- * Click the **`Download CSV`** button. You are going to need these values here in a moment.
-
-![image](tutorial/images/astra-token.png?raw=true)
-
-Notice the clipboard icon at the end of each value.
-
-- `Client ID:` We will not be using this value
-
-- `Client Secret:` We will not be using this value either
-
-- `Token:` We will use it as a api Key to interact with APIS
-
-To know more about roles of each token you can have a look to [this video.](https://www.youtube.com/watch?v=nRqu44W-bMU)
-
-### 7. Configure and connect database
+### 6. Configure and connect database
  * In the repository directory run the following command to set up your Astra DB environment. This will verify the database you created earlier or create a new one for you if it can't find your database.
  ```
  npm exec astra-setup tiktok_workshop_db tiktok_keyspace
@@ -264,15 +235,8 @@ Execute each of the commands below to link your code to your Netlify deployment.
   netlify env:import .env
   ```
 
-<!--
-  * Will be used to allow you to execute `netlify open`
-  ```
-  netlify sites:list
-  ```
--->
-
 ### 10. Deploy to production
-Now that you've hooked everything up, time to deplpoy to production.
+Now that you've hooked everything up, time to deploy to production.
 
   * Run
   ```
@@ -344,31 +308,9 @@ In this method, we are using our previously created `getAstraClient` method to i
 
 - `ASTRA_DB_KEYSPACE`
 
-We will call the collection "**tktkposts**".
+We have named the collection "**tktkposts**".
 
 So now, any time we want to perform operations on our data, we will reference this method `getCollection`, and use the Document API from Stargate to do so.
-
-✅ Now that we have locally deployed our TikTok app, let's take a look at this in our database. Head to your [Astra DB dashboard](astra.datastax.com) and click the `Connect` button next to your database ('tiktok_workshop_db').
-
-![db_connect](./tutorial/images/db_connect.png?raw=true)
-
-✅ Then scroll down to the section called 'Launching SwaggerUI' and click the link. We'll be using SwaggerUI to make api calls to our database and see the results.
-
-![swaggerui_link](./tutorial/images/swaggerui_link.png?raw=true)
-
-✅ Open up the first section labelled "List collections in namespace" and click the button "Try it out".
-
-![swaggerui_link](./tutorial/images/swaggerui_listcollections_02.png?raw=true)
-
-✅ We need to provide our Application Token, and our keyspace name. Fortunately we have these already saved in our environment variables in the `.env` file. Go ahead and copy those over, then click 'Execute'.
-
-![swaggerui_link](./tutorial/images/swaggerui_listcollections_03.png?raw=true)
-
-And there we go, we see that a collection has been made in our database called "**tktkposts**"
-
-![swaggerui_link](./tutorial/images/swaggerui_listcollections_04.png?raw=true)
-
-<br/>
 
 ## Document API
 
@@ -439,18 +381,6 @@ In this case, we are passing an empty object to retrieve all documents. In a rea
 
 Let's go back to SwaggerUI and give this a test.
 
-✅ Back in SwaggerUI, open up the section labelled "Search documents in a collection".
-
-![swaggerui_link](./tutorial/images/swaggerui_searchdocuments_02.png?raw=true)
-
-✅ Again, we have to provide the Application Token, keyspace name, and this time we will also include the collection id: **`tktkposts`**. We should also increase the page size as the tool defaults to only returning 1 document, and we will be retrieving many. Go ahead and fill those fields and click 'Execute'.
-
-![swaggerui_link](./tutorial/images/swaggerui_searchdocuments_03.png?raw=true)
-
-And we see all of the documents stored in our database.
-
-![swaggerui_link](./tutorial/images/swaggerui_searchdocuments_04.png?raw=true)
-
 # Part 3 - Serverless Functions, how they work
 So how do these functions work with no back-end server?
 
@@ -485,39 +415,3 @@ From here we can see all our functions and get direct links as well as watch rea
 We can also see this in action by manually going to the endpoint on our Netlify site: `[your-site-url]/.netlify/functions/posts`.
 
 ![netlify_endpoint](./tutorial/images/netlify_endpoint_nav.gif)
-
-# Extra resources
-
-## Video tutorial with Ania Kubow
-Thank you to our wonderful friend Ania Kubow for producing the TikTok clone. If you are not aware of Ania and love learning about coding you should absolutely check out her YouTube channel listed below.
-
-While we focused on getting you up and running to production with Astra DB and Netlify, Ania's video will dig into more details on the app itself. Check it out to dig in more.
-
-<!--- STARTEXCLUDE --->
-## Running Astra DB Tik-Tok
-We're using Create-React-App and the Astra DB Document API to create a simple Tik-Tok clone.  Follow along in this video tutorial: [https://youtu.be/IATOicvih5A](https://youtu.be/IATOicvih5A).
-
-Follow the instructions below to get started.
-
-### Video Content:
-- [https://youtu.be/IATOicvih5A](https://youtu.be/IATOicvih5A)
-- (00:00) Introduction
-- (03:05) Creating our Database on DataStax
-- (06:52) Setting up our App
-- (12:37) Routing Pages
-- (18:02) Creating Components
-- (28:32) Introduction to Data with Netlify and Stargate
-- (30:10) Introduction to using the astrajs/collections
-- (34:01) Posting data to our Database (creating dummy Tik Tok posts)
-- (34:01) Adding authorization to access our Database
-- (43:10) Getting data from our Database (getting all our Tik Tok posts)
-- (50: 32) Viewing all our Data
-- (51:56) Rendering components based on our Data
-- (01:17:01) Editing our Data (following/unfollowing a user)
-- (01:32:57) Adding new Data to our Database (creating a Tik Tok post)
-
-### If you did like this video, please hit the Like and Subscribe button so I know to make more!
-- Twitter: https://twitter.com/ania_kubow
-- YouTube: https://youtube.com/aniakubow
-- Instagram: https://instagram.com/aniakubow
-<!--- ENDEXCLUDE --->
