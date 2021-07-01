@@ -78,8 +78,8 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 
 ### 1. Deploy to Netlify
 - <details><summary> What does the netlify deploy button do?</summary>The Netlify deploy button will:<ul>
-    <li>Create a new repository for you on Github</li>
-    <li>Create a site on Netlify</li>
+    <li>Create a new repository for you on Github by cloning this workspace.</li>
+    <li>Create a site on Netlify.</li>
     <li>Link the two together.</li></ul>
 </details>
 
@@ -90,9 +90,27 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
     <img src="tutorial/images/deploy-to-netlify.gif?raw=true" />
     </details>
 
-This will take a few minutes.
+This will take a few minutes.  In the meantime, let's get set up with Astra.
 
-  * Click on `Site deploy in progress` within the Netlify UI, 
+### 2. Login or Register to Astra DB and create database
+
+Click the button to login or register with Datastax
+
+<a href="http://dtsx.io/tik-tok-clone"><img src="tutorial/images/create_astra_db.png?raw=true" /></a>
+- <details><summary>Show me!</summary>
+    <img src="https://github.com/datastaxdevs/workshop-spring-stargate/raw/main/images/tutorials/astra-create-db.gif?raw=true" />
+</details>
+
+**Use the following values when creating the database**
+|Field| Value|
+|---|---|
+|**database name**| `tiktok_workshop_db` |
+|**keypace**| `tiktok_keyspace` |
+|**Cloud Provider**| *Use the one you like, click a cloud provider logo,  pick an Area in the list and finally pick a region.* |
+
+### 3. Verify site has built
+
+  * Click on `Site deploy in progress` within the Netlify UI 
     <details>
     <summary>Show me! </summary>
     <img src="tutorial/images/deploy-1.png" />
@@ -115,27 +133,8 @@ This will take a few minutes.
     <summary>Show me! </summary>
     <img src="tutorial/images/deploy-4.png" />
     </details>
-    
-### 2. Login or Register to Astra DB and create database
-
-Click the button to login or register with Datastax
-
-<a href="http://dtsx.io/tik-tok-clone"><img src="tutorial/images/create_astra_db.png?raw=true" /></a>
-- <details><summary>Show me!</summary>
-    <img src="https://github.com/datastaxdevs/workshop-spring-stargate/raw/main/images/tutorials/astra-create-db.gif?raw=true" />
-</details>
-
-**Use the following values when creating the database**
-|Field| Value|
-|---|---|
-|**database name**| `tiktok_workshop_db` |
-|**keypace**| `tiktok_keyspace` |
-|**Cloud Provider**| *Use the one you like, click a cloud provider logo,  pick an Area in the list and finally pick a region.* |
-
-
-### 3. Switch to your new Github Repository
-
-  * Back in the Netlify tab, click on the `GitHub` in `Deploys from GitHub` to get back to your new repository.  Scroll to where you were in the README.
+ 
+  * Click on the `GitHub` in `Deploys from GitHub` to get back to your new repository.  Scroll to where you were in the README.
     <details>
     <summary>Show me! </summary>
     <img src="tutorial/images/deploy-5.png" />
@@ -273,7 +272,7 @@ const getAstraClient = async () => {
 };
 ```
 
-Here we are defining a new method called `getAstraClient` that uses the `createClient` method from our `astrajs` library to create a connection to our database. We then provide it the needed database credentials we added to our environment varaiables earlier;
+Here we are defining a new method called `getAstraClient` that uses the `createClient` method from our `astrajs` library to create a connection to our database. We then provide it the needed database credentials we added to our environment variables earlier;
 
 - `ASTRA_DB_ID`
 - `ASTRA_DB_REGION`

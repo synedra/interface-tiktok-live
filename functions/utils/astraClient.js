@@ -13,6 +13,7 @@ const getAstraClient = async () => {
       30000
     );
   }
+  console.log(astraClient)
   return astraClient;
 };
 
