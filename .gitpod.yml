@@ -1,11 +1,11 @@
 tasks:
-  - name: workshop-astra-tik-tok
+  - name: interface-tiktok
     init: |
-      cd /workspace/workshop-astra-tik-tok 
+      cd /workspace/interface-tiktok 
       nvm install node
       npm install -g npm@latest
     command: |
-      cd /workspace/workshop-astra-tik-tok
+      cd /workspace/interface-tiktok
       echo "workshop-astra-tik-tok gitpod ready - LET'S DO THIS!"
       npm install
 github:
